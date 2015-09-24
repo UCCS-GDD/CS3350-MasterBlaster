@@ -12,6 +12,7 @@ public class Turret : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
          timeDown = 0;
          turretRigid = GetComponent<Rigidbody2D>();
 	}
@@ -31,13 +32,29 @@ public class Turret : MonoBehaviour {
 
     }
         void Update () {
-           
+
+            Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+           // pos.x = Mathf.Clamp01(pos.x);
+           // pos.y = Mathf.Clamp01(pos.y);
+            if (pos.x < 0.03f)
+            {
+                pos.x = 0.03f;
+                turretRigid.velocity = new Vector2(0, 0);
+            }
+            if (pos.x > 0.97f)
+            {
+                pos.x = 0.97f;
+                turretRigid.velocity = new Vector2(0, 0);
+            }
+               
+            transform.position = Camera.main.ViewportToWorldPoint(pos);
+
 
             timeDown -= Time.deltaTime; 
           if (Input.GetKey(KeyCode.Space) && timeDown <= 0)
          {
           Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), bullet.transform.rotation);
-          timeDown = 0.5f;
+          timeDown = 0.2f;
          }
         if (Input.GetKey(KeyCode.Escape))
         {
