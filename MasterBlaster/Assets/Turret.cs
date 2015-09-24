@@ -1,15 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Turret : MonoBehaviour {
     Rigidbody2D turretRigid;
     public GameObject bullet;
-    float timeDown; 
+    float timeDown;
+
+    float minScreenBounds;
+    float maxScreenBounds;
 
 	// Use this for initialization
 	void Start () {
-        turretRigid = GetComponent<Rigidbody2D>();
-        timeDown = 0;
+
+         timeDown = 0;
+         turretRigid = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -27,12 +31,20 @@ public class Turret : MonoBehaviour {
 
     }
         void Update () {
+           
+
             timeDown -= Time.deltaTime; 
-      if (Input.GetKey(KeyCode.Space) && timeDown <= 0)
-      {
+          if (Input.GetKey(KeyCode.Space) && timeDown <= 0)
+         {
           Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), bullet.transform.rotation);
           timeDown = 0.5f;
-      }
+         }
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        
 
 	}
+  
 }
