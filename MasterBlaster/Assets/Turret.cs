@@ -29,7 +29,7 @@ public class Turret : MonoBehaviour {
         {
             turretRigid.AddForce(new Vector2(0.4f, 0), ForceMode2D.Impulse);
         }
-
+        
     }
         void Update () {
 
