@@ -12,23 +12,23 @@ public class Block : MonoBehaviour {
 	void Update () {
         
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-        if (pos.y > 0.02)
+        if (pos.y > -0.75)
         {
-            transform.position -= transform.up * Time.deltaTime * 3;
+            //transform.position -= transform.up * Time.deltaTime * 3;
 
-           //GetComponent<Rigidbody2D>().velocity =  new Vector2(0, -3);
+           GetComponent<Rigidbody2D>().velocity =  new Vector2(0, -3);
    
         }
-       // Debug.Log(pos.y);
+        else
+        {
+            //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+           GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+       Debug.Log(pos.y);
 	}
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.gameObject.tag == "Bullet")
-        {
-            transform.DetachChildren();
-            Destroy(gameObject);
-            Destroy(coll.gameObject);
-        }
+        
     }
 }
