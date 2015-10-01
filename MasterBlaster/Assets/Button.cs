@@ -5,7 +5,7 @@ public class Button : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        GetComponent<Renderer>().bounds.Encapsulate(GetComponentInChildren<Renderer>().bounds);
 	}
 	
 	// Update is called once per frame
@@ -16,5 +16,10 @@ public class Button : MonoBehaviour {
     public void OnClick()
     {
         Application.LoadLevel(1);
+    }
+
+    public void ClickExit()
+    {
+        Application.Quit();
     }
 }

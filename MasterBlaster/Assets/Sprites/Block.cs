@@ -22,9 +22,9 @@ public class Block : MonoBehaviour {
 
         GetComponent<Renderer>().bounds.Encapsulate(combined);
         //GetComponent<Renderer>().bounds.h
-        Debug.Log(combined);
+        //Debug.Log(combined);
         
-   
+       
       
        
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
@@ -32,19 +32,24 @@ public class Block : MonoBehaviour {
         {
             //transform.position -= transform.up * Time.deltaTime * 3;
 
-           GetComponent<Rigidbody2D>().velocity =  new Vector2(0, -3);
+
+           GetComponent<Rigidbody2D>().velocity =  new Vector2(0, -2);
    
         }
         else
         {
-            //GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-           GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+           //GetComponent<Rigidbody2D>().isKinematic = true;
+           gameObject.tag = "Stationary";
         }
        
 	}
 
-    void OnTriggerEnter2D(Collider2D coll)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        
+        if (coll.gameObject.tag == "Stationary")
+        {
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+        }
     }
 }
