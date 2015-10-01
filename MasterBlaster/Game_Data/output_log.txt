@@ -27,11 +27,11 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename:  Line: -1)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 167c -> priority: 1 
-  Thread -> id: 1198 -> priority: 1 
+  Thread -> id: 1798 -> priority: 1 
+  Thread -> id: 1d44 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 10.416764 ms
+UnloadTime: 10.397520 ms
 
 Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 322.
-Total: 10.264520 ms (FindLiveObjects: 0.019672 ms CreateObjectMapping: 9.796241 ms MarkObjects: 0.435778 ms  DeleteObjects: 0.011974 ms)
+Total: 1.751665 ms (FindLiveObjects: 0.028652 ms CreateObjectMapping: 0.051745 ms MarkObjects: 1.656298 ms  DeleteObjects: 0.014112 ms)
 

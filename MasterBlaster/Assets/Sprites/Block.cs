@@ -10,17 +10,19 @@ public class Block : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Bounds combined = GetComponent<Renderer>().bounds;
-        Renderer[] children = GetComponentsInChildren<Renderer>();
-        foreach (Renderer go in children)
-        {
-            combined.Encapsulate(go.bounds);
+        //Bounds combined = GetComponent<Renderer>().bounds;
+        //Renderer[] children = GetComponentsInChildren<Renderer>();
+        //foreach (Renderer go in children)
+        //{
+
+            //combined.Encapsulate(go.bounds);
+            //transform.position = go.bounds.center;
             
         
   
-        }
+        //}
 
-        GetComponent<Renderer>().bounds.Encapsulate(combined);
+//      GetComponent<Renderer>().bounds.Encapsulate(combined);
         //GetComponent<Renderer>().bounds.h
         //Debug.Log(combined);
         
@@ -36,12 +38,7 @@ public class Block : MonoBehaviour {
            GetComponent<Rigidbody2D>().velocity =  new Vector2(0, -2);
    
         }
-        else
-        {
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
-           //GetComponent<Rigidbody2D>().isKinematic = true;
-           gameObject.tag = "Stationary";
-        }
+       
        
 	}
 

@@ -13,7 +13,14 @@ public class BlockChild : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (pos.y < 0.05f)
+        {
+            GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            //GetComponent<Rigidbody2D>().isKinematic = true;
+            gameObject.tag = "Stationary";
+        }
 	
 	}
     void OnTriggerEnter2D(Collider2D coll)
