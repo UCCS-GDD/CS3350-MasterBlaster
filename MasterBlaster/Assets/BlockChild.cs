@@ -15,12 +15,13 @@ public class BlockChild : MonoBehaviour {
 
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 
-        if (pos.y < 0.05f)
-        {
+       if (pos.y < 0.05f)
+        { 
             GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             //GetComponent<Rigidbody2D>().isKinematic = true;
             gameObject.tag = "Stationary";
         }
+
 	
 	}
     void OnTriggerEnter2D(Collider2D coll)
@@ -32,8 +33,5 @@ public class BlockChild : MonoBehaviour {
             Destroy(coll.gameObject);
         }
     }
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-      
-    }
+
 }

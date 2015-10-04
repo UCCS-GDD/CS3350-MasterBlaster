@@ -15,7 +15,7 @@ Loading C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\G
 Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.043 seconds
+- Completed reload, in  0.042 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
@@ -27,11 +27,11 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename:  Line: -1)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1798 -> priority: 1 
-  Thread -> id: 1d44 -> priority: 1 
+  Thread -> id: 1a18 -> priority: 1 
+  Thread -> id: 1e60 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 10.397520 ms
+UnloadTime: 8.888810 ms
 
-Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 322.
-Total: 1.751665 ms (FindLiveObjects: 0.028652 ms CreateObjectMapping: 0.051745 ms MarkObjects: 1.656298 ms  DeleteObjects: 0.014112 ms)
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 343.
+Total: 0.294226 ms (FindLiveObjects: 0.022238 ms CreateObjectMapping: 0.016250 ms MarkObjects: 0.235210 ms  DeleteObjects: 0.009836 ms)
 
