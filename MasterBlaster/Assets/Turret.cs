@@ -2,25 +2,23 @@
 using UnityEngine;
 
 public class Turret : MonoBehaviour {
-    Rigidbody2D turretRigid;
-    public GameObject bullet;
-    float timeDown;
 
-    float minScreenBounds;
-    float maxScreenBounds;
+    Rigidbody2D turretRigid;  //store rigidbody of turret
+    public GameObject bullet;  //store  gameobject of bullet
+    float timeDown;            //used for how often turret can shoot
+
 
 	// Use this for initialization
 	void Start () {
-
-
+        //start off being able to shoot and assign the rigidbody to the variable
          timeDown = 0;
          turretRigid = GetComponent<Rigidbody2D>();
 	}
 	
-	// Update is called once per frame
 
     void FixedUpdate()
     {
+        //if the left or right arrow key is pressed add a force in the right direction
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             turretRigid.AddForce(new Vector2(-0.4f, 0), ForceMode2D.Impulse);
@@ -31,11 +29,16 @@ public class Turret : MonoBehaviour {
         }
         
     }
-        void Update () {
 
+    // Update is called once per frame
+        void Update () {
+            //have our time constantly going down
+            timeDown -= Time.deltaTime; 
+
+            //see where the player is relative to screen coordiinates - which are 0 to 1
             Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
-           // pos.x = Mathf.Clamp01(pos.x);
-           // pos.y = Mathf.Clamp01(pos.y);
+           
+            //if our turret is on the edge of the screen, set its velocity to 0 and set its position back to the edge of the screen
             if (pos.x < 0.03f)
             {
                 pos.x = 0.03f;
@@ -46,16 +49,20 @@ public class Turret : MonoBehaviour {
                 pos.x = 0.97f;
                 turretRigid.velocity = new Vector2(0, 0);
             }
-               
+            
+            //put our pos variable back into world coordinates and use that to determine the turret's position
             transform.position = Camera.main.ViewportToWorldPoint(pos);
 
 
-            timeDown -= Time.deltaTime; 
+           //if space is pressed and it is time to shoot a bullet...
           if (Input.GetKey(KeyCode.Space) && timeDown <= 0)
          {
-          Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), bullet.transform.rotation);
-          timeDown = 0.2f;
+            //insantiate a bullet and set the delay time between shooting
+            Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
+            timeDown = 0.5f;
          }
+
+        //if escape is pressed exit the  game
         if (Input.GetKey(KeyCode.Escape))
         {
             Application.Quit();
