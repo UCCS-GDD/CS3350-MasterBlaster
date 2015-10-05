@@ -21,7 +21,7 @@ public class BlockChild : MonoBehaviour {
         { 
             GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             //GetComponent<Rigidbody2D>().isKinematic = true;
-            gameObject.tag = "Stationary";
+            transform.parent.tag = "Stationary";
         }
 
 	
@@ -29,7 +29,7 @@ public class BlockChild : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D coll)
     {
         //if the block is hit by a bullet, destroy the bullet and block
-        if (coll.gameObject.tag == "Bullet")
+        if (coll.gameObject.tag == "Bullet" && gameObject.tag != "Stationary")
         {
 
             Destroy(gameObject);

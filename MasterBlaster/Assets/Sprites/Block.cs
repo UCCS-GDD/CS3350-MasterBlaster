@@ -15,6 +15,19 @@ public class Block : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        Debug.Log(toMove);
+
+        if (gameObject.tag == "Stationary")
+        {
+            Debug.Log("yes");
+            Transform[] childTs = GetComponentsInChildren<Transform>();
+
+            foreach(Transform transform in childTs)
+            {
+                transform.gameObject.tag = "Stationary";
+            }
+        }
         //if mouse is pressed
         if (Input.GetMouseButtonDown(0))
         {
@@ -34,7 +47,7 @@ public class Block : MonoBehaviour {
                 //set the shape that can be moved to the colliders the mouse is pressing
                 foreach (Collider2D c in col)
                 {
-                    Debug.Log("Collided with: " + c.gameObject.name);
+                    //Debug.Log("Collided with: " + c.gameObject.name);
                     toMove = c.gameObject;
                   
                 }
@@ -42,7 +55,7 @@ public class Block : MonoBehaviour {
         }
        
         //see where the shapes are relative to the screen
-        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+        Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
 
         //if the shape is not at the bottom of the screen the shape can fall down
         if (pos.y > 0.05)
@@ -52,12 +65,6 @@ public class Block : MonoBehaviour {
    
         }
         
-            //else its at the bottom of the screen, so it isn't moving and its tag SHOULD be set to stationary
-        else
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
-            gameObject.tag = "Stationary";
-        }
        
 	}
 
@@ -72,14 +79,14 @@ public class Block : MonoBehaviour {
         //else move the shape right with D
         else if (Input.GetKey(KeyCode.D) && toMove != null)
         {
-            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0001f, 0), ForceMode2D.Impulse);
+            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0.0001f, 0), ForceMode2D.Impulse);
         }
     }
 
     void OnCollisionEnter2D(Collision2D coll)
     {
         //test to see if it hits specific shapes will it stop moving - also did not work nor did the tag work
-        if (coll.gameObject.name == "Lshape" || coll.gameObject.name == "Square" || coll.gameObject.name == "TShape")
+        if (coll.gameObject.tag == "Stationary")
         {
             GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             gameObject.tag = "Stationary";
