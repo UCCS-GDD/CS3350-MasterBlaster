@@ -15,6 +15,24 @@ public class Block : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //see where the player is relative to screen coordiinates - which are 0 to 1
+        Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+           
+            //if our turret is on the edge of the screen, set its velocity to 0 and set its position back to the edge of the screen
+            if (pos.x < 0.03f)
+            {
+                pos.x = 0.03f;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                
+            }
+            if (pos.x > 0.97f)
+            {
+                pos.x = 0.97f;
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+            }
+            
+            //put our pos variable back into world coordinates and use that to determine the turret's position
+            transform.position = Camera.main.ViewportToWorldPoint(pos);
 
         Debug.Log(toMove);
 
@@ -23,9 +41,9 @@ public class Block : MonoBehaviour {
             Debug.Log("yes");
             Transform[] childTs = GetComponentsInChildren<Transform>();
 
-            foreach(Transform transform in childTs)
+            foreach(Transform trans in childTs)
             {
-                transform.gameObject.tag = "Stationary";
+                trans.gameObject.tag = "Stationary";
             }
         }
         //if mouse is pressed
@@ -55,13 +73,13 @@ public class Block : MonoBehaviour {
         }
        
         //see where the shapes are relative to the screen
-        Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        
 
         //if the shape is not at the bottom of the screen the shape can fall down
         if (pos.y > 0.05)
         {
             
-           GetComponent<Rigidbody2D>().velocity =  new Vector2(0, -2);
+           GetComponent<Rigidbody2D>().velocity =  new Vector2(0, -1);
    
         }
         
@@ -74,6 +92,7 @@ public class Block : MonoBehaviour {
         if (Input.GetKey(KeyCode.A) && toMove != null)
         {
             toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-0.0001f, 0), ForceMode2D.Impulse);
+
         }
 
         //else move the shape right with D
@@ -90,6 +109,42 @@ public class Block : MonoBehaviour {
         {
             GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             gameObject.tag = "Stationary";
+        }
+    }
+
+    bool isValidGridPos()
+    {
+        Transform[] childs = GetComponentsInChildren<Transform>();
+        foreach (Transform child in childs)
+        {
+            Vector2 v = Grid.roundVec2(child.position);
+
+            // Not inside Border?
+            if (!Grid.insideBorder(v))
+                return false;
+
+            // Block in grid cell (and not part of same group)?
+            if (Grid.grid[(int)v.x, (int)v.y] != null &&
+                Grid.grid[(int)v.x, (int)v.y].parent != transform)
+                return false;
+        }
+        return true;
+    }
+
+    void updateGrid()
+    {
+        // Remove old children from grid
+        for (int y = 0; y < Grid.h; ++y)
+            for (int x = 0; x < Grid.w; ++x)
+                if (Grid.grid[x, y] != null)
+                    if (Grid.grid[x, y].parent == transform)
+                        Grid.grid[x, y] = null;
+
+        // Add new children to grid
+        foreach (Transform child in transform)
+        {
+            Vector2 v = Grid.roundVec2(child.position);
+            Grid.grid[(int)v.x, (int)v.y] = child;
         }
     }
 

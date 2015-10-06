@@ -17,7 +17,7 @@ public class SpawnerScipt : MonoBehaviour {
 	void Start () {
         //get random shape, time, and x location
         shape = Random.Range(1, 4);
-        time = Random.Range(1,4);
+        time = Random.Range(3,7);
 
         //the random location is from 0 to one because it will be in viewport/screen coordinates
         whereSpawn = Random.Range(0.0f, 1.0f);
@@ -43,7 +43,7 @@ public class SpawnerScipt : MonoBehaviour {
                     spawnShape = square;
                     Instantiate(spawnShape, screenCoords, Quaternion.identity);
                     shape = Random.Range(1, 4);
-                    time = Random.Range(1, 4);
+                    time = Random.Range(3, 7);
                     whereSpawn = Random.Range(0.0f, 1.0f);
 
                     break;
@@ -51,14 +51,14 @@ public class SpawnerScipt : MonoBehaviour {
                     spawnShape = TShape;
                     Instantiate(spawnShape, screenCoords, Quaternion.identity);
                     shape = Random.Range(1, 4);
-                    time = Random.Range(1, 4);
+                    time = Random.Range(3, 7);
                     whereSpawn = Random.Range(0.0f, 1.0f);
                     break;
                 case 3:
                     spawnShape = LShape;
                     Instantiate(spawnShape, screenCoords, Quaternion.identity);
                     shape = Random.Range(1, 4);
-                    time = Random.Range(1, 4);
+                    time = Random.Range(3, 7);
                     whereSpawn = Random.Range(0.0f, 1.0f);
                     break;
             }
