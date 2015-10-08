@@ -23,4 +23,8 @@ public class Button : MonoBehaviour {
     {
         Application.Quit();
     }
+    public void BackMainMenu()
+    {
+        Application.LoadLevel(0);
+    }
 }
