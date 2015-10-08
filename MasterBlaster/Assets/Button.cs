@@ -27,4 +27,8 @@ public class Button : MonoBehaviour {
     {
         Application.LoadLevel(0);
     }
+    public void toInstructions()
+    {
+        Application.LoadLevel(2);
+    }
 }
