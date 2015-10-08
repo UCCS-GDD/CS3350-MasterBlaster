@@ -34,8 +34,7 @@ public class Block : MonoBehaviour {
             //put our pos variable back into world coordinates and use that to determine the turret's position
             transform.position = Camera.main.ViewportToWorldPoint(pos);
 
-        Debug.Log(toMove);
-
+        //Debug.Log(toMove);
         if (gameObject.tag == "Stationary")
         {
             Debug.Log("yes");
@@ -67,6 +66,7 @@ public class Block : MonoBehaviour {
                 {
                     //Debug.Log("Collided with: " + c.gameObject.name);
                     toMove = c.gameObject;
+                    toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
                   
                 }
             }
@@ -88,19 +88,23 @@ public class Block : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if (toMove != null)
+        {
+            toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, -1);
+        }
         //if A is pressed and we have an object selected, move the shape left
         if (Input.GetKey(KeyCode.A) && toMove != null)
         {
-            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-0.0001f, 0), ForceMode2D.Impulse);
-
+            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-0.0005f, 0), ForceMode2D.Impulse);
 
         }
 
         //else move the shape right with D
         else if (Input.GetKey(KeyCode.D) && toMove != null)
         {
-            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0.0001f, 0), ForceMode2D.Impulse);
+            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0.0005f, 0), ForceMode2D.Impulse);
         }
+
     }
 
     void OnCollisionEnter2D(Collision2D coll)
