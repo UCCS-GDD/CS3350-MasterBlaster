@@ -93,6 +93,7 @@ public class Block : MonoBehaviour {
         {
             toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-0.0001f, 0), ForceMode2D.Impulse);
 
+
         }
 
         //else move the shape right with D

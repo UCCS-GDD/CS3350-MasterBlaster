@@ -6,6 +6,9 @@ public class SpawnerScipt : MonoBehaviour {
     public GameObject TShape;  //hold Tshape gamebject
     public GameObject LShape;  //hold Lshape gameobject
     GameObject spawnShape;     //hold which shape should spawn - not really needed anymore but keeping it incase of debuggin
+    int[] rotationChoices = new int[] {0, 90, 180, 270, 360};
+    int howMany;
+    int chooseRotation;
 
     int shape;  //used for case statement
     float time; //used for random time spawning
@@ -16,6 +19,8 @@ public class SpawnerScipt : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //get random shape, time, and x location
+        howMany = rotationChoices.Length;
+        chooseRotation = Random.Range(0, howMany);
         shape = Random.Range(1, 4);
         time = Random.Range(3,7);
 
@@ -41,25 +46,28 @@ public class SpawnerScipt : MonoBehaviour {
             {
                 case 1:
                     spawnShape = square;
-                    Instantiate(spawnShape, screenCoords, Quaternion.identity);
+                    Instantiate(spawnShape, screenCoords, Quaternion.Euler(0,0,rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
                     time = Random.Range(3, 7);
                     whereSpawn = Random.Range(0.0f, 1.0f);
+                    chooseRotation = Random.Range(0, howMany);
 
                     break;
                 case 2:
                     spawnShape = TShape;
-                    Instantiate(spawnShape, screenCoords, Quaternion.identity);
+                    Instantiate(spawnShape, screenCoords, Quaternion.Euler(0, 0, rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
                     time = Random.Range(3, 7);
                     whereSpawn = Random.Range(0.0f, 1.0f);
+                    chooseRotation = Random.Range(0, howMany);
                     break;
                 case 3:
                     spawnShape = LShape;
-                    Instantiate(spawnShape, screenCoords, Quaternion.identity);
+                    Instantiate(spawnShape, screenCoords, Quaternion.Euler(0, 0, rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
                     time = Random.Range(3, 7);
                     whereSpawn = Random.Range(0.0f, 1.0f);
+                    chooseRotation = Random.Range(0, howMany);
                     break;
             }
         }
