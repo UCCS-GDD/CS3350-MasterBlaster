@@ -3,11 +3,11 @@ using System.Collections;
 
 
 public class BlockChild : MonoBehaviour {
+    public static int score;
    
 
 	// Use this for initialization
 	void Start () {
-       
 	}
 	
 	// Update is called once per frame
@@ -31,10 +31,12 @@ public class BlockChild : MonoBehaviour {
         //if the block is hit by a bullet, destroy the bullet and block
         if (coll.gameObject.tag == "Bullet" && gameObject.tag != "Stationary")
         {
-
+            score += 5;
             Destroy(gameObject);
             Destroy(coll.gameObject);
         }
     }
+
+    
 
 }

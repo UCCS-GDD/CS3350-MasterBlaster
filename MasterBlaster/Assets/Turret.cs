@@ -13,6 +13,7 @@ public class Turret : MonoBehaviour {
         //start off being able to shoot and assign the rigidbody to the variable
          timeDown = 0;
          turretRigid = GetComponent<Rigidbody2D>();
+         BlockChild.score = 0;
 	}
 	
 
@@ -70,5 +71,11 @@ public class Turret : MonoBehaviour {
         
 
 	}
+        void OnGUI()
+        {
+            GUIStyle style = new GUIStyle();
+            style.fontSize = 40;
+            GUI.Label(new Rect(0, 0, 10, 10), BlockChild.score.ToString(), style);
+        }
   
 }

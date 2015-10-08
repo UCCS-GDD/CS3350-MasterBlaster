@@ -25,7 +25,7 @@ public class SpawnerScipt : MonoBehaviour {
         time = Random.Range(3,7);
 
         //the random location is from 0 to one because it will be in viewport/screen coordinates
-        whereSpawn = Random.Range(0.0f, 1.0f);
+        whereSpawn = Random.Range(0.03f, 0.97f);
 	
 	}
 	
@@ -49,7 +49,7 @@ public class SpawnerScipt : MonoBehaviour {
                     Instantiate(spawnShape, screenCoords, Quaternion.Euler(0,0,rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
                     time = Random.Range(3, 7);
-                    whereSpawn = Random.Range(0.0f, 1.0f);
+                    whereSpawn = Random.Range(0.03f, 0.97f);
                     chooseRotation = Random.Range(0, howMany);
 
                     break;
@@ -58,7 +58,7 @@ public class SpawnerScipt : MonoBehaviour {
                     Instantiate(spawnShape, screenCoords, Quaternion.Euler(0, 0, rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
                     time = Random.Range(3, 7);
-                    whereSpawn = Random.Range(0.0f, 1.0f);
+                    whereSpawn = Random.Range(0.03f, 0.97f);
                     chooseRotation = Random.Range(0, howMany);
                     break;
                 case 3:
@@ -66,7 +66,7 @@ public class SpawnerScipt : MonoBehaviour {
                     Instantiate(spawnShape, screenCoords, Quaternion.Euler(0, 0, rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
                     time = Random.Range(3, 7);
-                    whereSpawn = Random.Range(0.0f, 1.0f);
+                    whereSpawn = Random.Range(0.03f, 0.97f);
                     chooseRotation = Random.Range(0, howMany);
                     break;
             }
