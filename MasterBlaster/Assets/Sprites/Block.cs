@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Block : MonoBehaviour {
     GameObject toMove;
+    Vector3 pixelpos;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +15,42 @@ public class Block : MonoBehaviour {
     
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+    {
+
+        if (toMove != null)
+        {
+           // pixelpos = Camera.main.WorldToScreenPoint(toMove.transform.position);
+            
+            //Debug.Log("pixelpos " + pixelpos);
+            
+             if (Input.GetKeyDown(KeyCode.A) && toMove.tag != "Stationary")
+        {
+            //pixelpos.x -= 1;
+            //Vector3 pixelToMove = Camera.main.ScreenToWorldPoint(new Vector3(pixelpos.x - 1, pixelpos.y, pixelpos.z));
+            //Debug.Log("pixeltomove " + pixelToMove);
+
+            // toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-0.0005f, 0), ForceMode2D.Impulse);
+            toMove.transform.parent.Translate(toMove.transform.right * -1);
+
+        }
+             else if (Input.GetKeyDown(KeyCode.D) && toMove.tag != "Stationary")
+
+             {
+                 toMove.transform.parent.Translate(toMove.transform.right * 1);
+     
+                 
+        
+             }
+
+            
+
+        }
+       
+        
+        
+        //if A is pressed and we have an object selected, move the shape left
+       
         //see where the player is relative to screen coordiinates - which are 0 to 1
         Vector3 pos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
            
@@ -37,7 +73,7 @@ public class Block : MonoBehaviour {
         //Debug.Log(toMove);
         if (gameObject.tag == "Stationary")
         {
-            Debug.Log("yes");
+            //Debug.Log("yes");
             Transform[] childTs = GetComponentsInChildren<Transform>();
 
             foreach(Transform trans in childTs)
@@ -87,27 +123,10 @@ public class Block : MonoBehaviour {
 	}
 
     void FixedUpdate()
+       
     {
-        if (toMove != null)
-        {
-            toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, -1);
-        }
-        //if A is pressed and we have an object selected, move the shape left
-        if (Input.GetKey(KeyCode.A) && toMove != null)
-        {
-            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-0.0005f, 0), ForceMode2D.Impulse);
-
-        }
-
-        //else move the shape right with D
-        else if (Input.GetKey(KeyCode.D) && toMove != null)
-        {
-            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0.0005f, 0), ForceMode2D.Impulse);
-        }
-        else if (Input.GetKey(KeyCode.S) && toMove != null)
-        {
-            toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(0, -0.0001f), ForceMode2D.Impulse);
-        }
+         
+       
 
     }
 

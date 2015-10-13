@@ -11,6 +11,13 @@ public class Grid : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        for (int x = 0; x < w; x++ )
+        {
+            for (int y = 0; y < h; y++)
+            {
+                grid[x,y].Translate(new Vector3(x * 64, -y * 64));
+            }
+        }
 	
 	}
 	
