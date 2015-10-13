@@ -31,13 +31,13 @@ public class Block : MonoBehaviour {
             //Debug.Log("pixeltomove " + pixelToMove);
 
             // toMove.GetComponentInParent<Rigidbody2D>().AddForce(new Vector2(-0.0005f, 0), ForceMode2D.Impulse);
-            toMove.transform.parent.Translate(toMove.transform.right * -1);
+            toMove.transform.parent.position -= new Vector3(1, 0);
 
         }
              else if (Input.GetKeyDown(KeyCode.D) && toMove.tag != "Stationary")
 
              {
-                 toMove.transform.parent.Translate(toMove.transform.right * 1);
+                 toMove.transform.parent.position += new Vector3(1,0);
      
                  
         
@@ -82,7 +82,7 @@ public class Block : MonoBehaviour {
             }
         }
         //if mouse is pressed
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             //get mouse posiiton and set its depth
             Vector3 mousePosition = Input.mousePosition;
@@ -102,7 +102,7 @@ public class Block : MonoBehaviour {
                 {
                     //Debug.Log("Collided with: " + c.gameObject.name);
                     toMove = c.gameObject;
-                    toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                    //toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
                   
                 }
             }
