@@ -4,6 +4,7 @@ using System.Collections;
 
 public class BlockChild : MonoBehaviour {
     public static int score;
+    public static Transform gridPos;
    
 
 	// Use this for initialization
@@ -12,7 +13,17 @@ public class BlockChild : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        Debug.Log(gridPos);
+        for (int i = 0; i < Grid.w; i++)
+        {
+            for (int j = 0; j< Grid.h; j++)
+            {
+                if (transform == Grid.grid[i,j])
+                {
+                    gridPos = Grid.grid[i, j];
+                }
+            }
+        }
         //get where the blocks are in relation to the screen
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 
