@@ -15,6 +15,8 @@ public class BlockChild : MonoBehaviour {
 	void Update () {
         Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite.pixelsPerUnit);
         //Debug.Log(gridPos);
+
+        //try to get position on grid of each block 
         for (int i = 0; i < Grid.w; i++)
         {
             for (int j = 0; j< Grid.h; j++)

@@ -15,11 +15,17 @@ public class GridManage : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(count);
+
+        //go through one row
         for (int i = 0; i < Grid.w; i++)
         {
+            //initially the count will be 0 on that row
             count = 0;
+
+            //go through each column on that row
             for (int j = 0; j < Grid.h; j++)
             {
+                //if a block is equal to that row and column position, set the count to be + 1
                 if (blockPos = Grid.grid[i,j])
                 {
                     count += 1;
