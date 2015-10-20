@@ -18,6 +18,11 @@ public class Grid : MonoBehaviour {
                 grid[x,y].transform.position = (new Vector3(x * 1, -y * 1));
             }
         }
+
+        foreach (Transform t in grid)
+        {
+            //t.SetAsFirstSibling();
+        }
 	
 	}
 	
