@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class SpawnerScipt : MonoBehaviour {
+    //public GameObject grid;    // hold grid
     public GameObject square;  //hold square gameobject
     public GameObject TShape;  //hold Tshape gamebject
     public GameObject LShape;  //hold Lshape gameobject
@@ -15,6 +16,7 @@ public class SpawnerScipt : MonoBehaviour {
     Vector3 height;  //used for getting screen coordinates at top
     Vector3 screenCoords;  //used to convert screen coords back to world coords
     float whereSpawn;      //used for randomizing where to spawn
+    //int whichCollider;   // used for spawning in grid
     
 
 	// Use this for initialization
@@ -26,7 +28,8 @@ public class SpawnerScipt : MonoBehaviour {
         time = Random.Range(3,7);
        
         //the random location is from 0 to one because it will be in viewport/screen coordinates
-        whereSpawn = Random.Range(0.03f, 0.97f);
+        whereSpawn = Random.Range(1, 12);
+        
 	
 	}
 	

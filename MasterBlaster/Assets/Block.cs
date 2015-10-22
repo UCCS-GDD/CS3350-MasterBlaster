@@ -5,6 +5,7 @@ public class Block : MonoBehaviour
 {
     GameObject toMove;
     Vector3 pixelpos;
+    GameObject transformObject;
 
     // Use this for initialization
     void Start()
@@ -111,7 +112,7 @@ public class Block : MonoBehaviour
 
 
         //if the shape is not at the bottom of the screen the shape can fall down
-        if (pos.y > 0.05)
+        if (pos.y > 0)
         {
 
             GetComponent<Rigidbody2D>().velocity = new Vector2(0, -1);
