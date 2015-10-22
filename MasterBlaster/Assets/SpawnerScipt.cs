@@ -15,6 +15,7 @@ public class SpawnerScipt : MonoBehaviour {
     Vector3 height;  //used for getting screen coordinates at top
     Vector3 screenCoords;  //used to convert screen coords back to world coords
     float whereSpawn;      //used for randomizing where to spawn
+    
 
 	// Use this for initialization
 	void Start () {
@@ -23,7 +24,7 @@ public class SpawnerScipt : MonoBehaviour {
         chooseRotation = Random.Range(0, howMany);
         shape = Random.Range(1, 4);
         time = Random.Range(3,7);
-
+       
         //the random location is from 0 to one because it will be in viewport/screen coordinates
         whereSpawn = Random.Range(0.03f, 0.97f);
 	
@@ -33,6 +34,7 @@ public class SpawnerScipt : MonoBehaviour {
 	void Update () {
         //Have time constantly go down
         time -= Time.deltaTime;
+        Debug.Log(time);
 
         //hold where the shape can spawn and turn that number into world coordinates
         height = new Vector3(whereSpawn,1,10);
@@ -48,7 +50,18 @@ public class SpawnerScipt : MonoBehaviour {
                     spawnShape = square;
                     Instantiate(spawnShape, screenCoords, Quaternion.Euler(0,0,rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
-                    time = Random.Range(3, 7);
+                    if (Time.time < 10f)
+                    {
+                        time = Random.Range(3, 7);
+                    }
+                    else if (Time.time > 10f && Time.time < 20f)
+                    {
+                        time = Random.Range(2, 5);
+                    }
+                    else
+                    {
+                        time = Random.Range(1, 3);
+                    }
                     whereSpawn = Random.Range(0.03f, 0.97f);
                     chooseRotation = Random.Range(0, howMany);
 
@@ -57,7 +70,18 @@ public class SpawnerScipt : MonoBehaviour {
                     spawnShape = TShape;
                     Instantiate(spawnShape, screenCoords, Quaternion.Euler(0, 0, rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
-                    time = Random.Range(3, 7);
+                    if (Time.time < 10f)
+                    {
+                        time = Random.Range(3, 7);
+                    }
+                    else if (Time.time > 10f && Time.time < 20f)
+                    {
+                        time = Random.Range(2, 5);
+                    }
+                    else
+                    {
+                        time = Random.Range(1, 3);
+                    }
                     whereSpawn = Random.Range(0.03f, 0.97f);
                     chooseRotation = Random.Range(0, howMany);
                     break;
@@ -65,7 +89,18 @@ public class SpawnerScipt : MonoBehaviour {
                     spawnShape = LShape;
                     Instantiate(spawnShape, screenCoords, Quaternion.Euler(0, 0, rotationChoices[chooseRotation]));
                     shape = Random.Range(1, 4);
-                    time = Random.Range(3, 7);
+                    if (Time.time < 10f)
+                    {
+                        time = Random.Range(3, 7);
+                    }
+                    else if (Time.time > 10f && Time.time < 20f)
+                    {
+                        time = Random.Range(2, 5);
+                    }
+                    else
+                    {
+                        time = Random.Range(1, 3);
+                    }
                     whereSpawn = Random.Range(0.03f, 0.97f);
                     chooseRotation = Random.Range(0, howMany);
                     break;

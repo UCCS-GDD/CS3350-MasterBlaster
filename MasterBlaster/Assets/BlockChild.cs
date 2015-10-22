@@ -13,7 +13,7 @@ public class BlockChild : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite.pixelsPerUnit);
+        //Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite.pixelsPerUnit);
         //Debug.Log(gridPos);
 
         //try to get position on grid of each block 
