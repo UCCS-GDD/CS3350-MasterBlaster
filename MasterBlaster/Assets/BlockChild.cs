@@ -4,7 +4,7 @@ using System.Collections;
 
 public class BlockChild : MonoBehaviour {
     public static int score;
-    public static Transform gridPos;
+    public static GameObject gridPos;
 
    
 
@@ -15,19 +15,18 @@ public class BlockChild : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite.pixelsPerUnit);
-        //Debug.Log(gridPos);
-
-        ////try to get position on grid of each block 
-        //for (int i = 0; i < Grid.w; i++)
-        //{
-        //    for (int j = 0; j < Grid.h; j++)
-        //    {
-        //        if (transform == Grid.grid[i, j])
-        //        {
-        //            gridPos = Grid.grid[i, j];
-        //        }
-        //    }
-        //}
+        //try to get position on grid of each block 
+        for (int i = 0; i < ScoringGrid.w; i++)
+        {
+            for (int j = 0; j < ScoringGrid.h; j++)
+            {
+                if (GetComponent<Collider2D>().bounds.Intersects(ScoringGrid.grid[i, j].GetComponent<BoxCollider2D>().bounds))
+                {
+                    gridPos = ScoringGrid.grid[i, j];
+                    Debug.Log("colliding with grid");
+                }
+            }
+        }
         //get where the blocks are in relation to the screen
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 
