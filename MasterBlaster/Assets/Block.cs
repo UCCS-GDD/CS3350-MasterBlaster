@@ -44,7 +44,7 @@ public class Block : MonoBehaviour
 
         if (toMove != null && gameObject == toMove)
         {
-            Debug.Log("ToMove: " + toMove);
+            //Debug.Log("ToMove: " + toMove);
             //Debug.Log("ToMove.position: " + toMove.position);
             //Debug.Log("ToMove.transform.position: " + toMove.transform.position);
             // pixelpos = Camera.main.WorldToScreenPoint(toMove.transform.position);

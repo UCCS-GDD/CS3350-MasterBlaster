@@ -5,6 +5,8 @@ using System.Collections;
 public class BlockChild : MonoBehaviour {
     public static int score;
     public static GameObject gridPos;
+    int count = 0;
+    int maxCount = 10;
 
    
 
@@ -14,19 +16,44 @@ public class BlockChild : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite.pixelsPerUnit);
-        //try to get position on grid of each block 
-        for (int i = 0; i < ScoringGrid.w; i++)
+
+        //Debug.Log(count);
+        if (tag == "Stationary")
         {
-            for (int j = 0; j < ScoringGrid.h; j++)
+            //go through one row
+            for (int i = 0; i < ScoringGrid.w; i++)
             {
-                if (GetComponent<Collider2D>().bounds.Intersects(ScoringGrid.grid[i, j].GetComponent<BoxCollider2D>().bounds))
+                //initially the count will be 0 on that row
+                count = 0;
+
+                //go through each column on that row
+                for (int j = 0; j < ScoringGrid.h; j++)
                 {
-                    gridPos = ScoringGrid.grid[i, j];
-                    Debug.Log("colliding with grid");
+                    
+                    //if a block is equal to that row and column position, set the count to be + 1
+                    if (GetComponent<Collider2D>().bounds.Intersects(ScoringGrid.grid[i, j].GetComponent<Collider2D>().bounds))
+                    {
+                        count += 1;
+
+                    }
+
+
                 }
             }
         }
+        //Debug.Log(GetComponentInChildren<SpriteRenderer>().sprite.pixelsPerUnit);
+        //try to get position on grid of each block 
+        //for (int i = 0; i < ScoringGrid.w; i++)
+       // {
+        //    for (int j = 0; j < ScoringGrid.h; j++)
+        //    {
+        //        if (GetComponent<Collider2D>().bounds.Intersects(ScoringGrid.grid[i, j].GetComponent<BoxCollider2D>().bounds))
+        //        {
+        //            gridPos = ScoringGrid.grid[i, j];
+        //            //Debug.Log("colliding with grid");
+        //        }
+        //    }
+        //}
         //get where the blocks are in relation to the screen
         Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 

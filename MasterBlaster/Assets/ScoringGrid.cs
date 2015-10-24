@@ -6,6 +6,7 @@ public class ScoringGrid : MonoBehaviour {
     public static int w = 12;
     public static int h = 5;
     public GameObject gridCell;
+    
    
 
 
@@ -34,6 +35,11 @@ public class ScoringGrid : MonoBehaviour {
     void Update()
     {
         
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+       
     }
 
 
