@@ -6,6 +6,8 @@ public class Block : MonoBehaviour
     GameObject toMove;
     Vector3 pixelpos;
     GameObject transformObject;
+    bool hasStopped = false;
+    public ScoringGrid gr;
 
     // Use this for initialization
     void Start()
@@ -35,7 +37,7 @@ public class Block : MonoBehaviour
             {
                 //set the shape that can be moved to the colliders the mouse is pressing
 
-                Debug.Log("Collided with: " + col.gameObject.name);
+                //Debug.Log("Collided with: " + col.gameObject.name);
                 toMove = col.gameObject.transform.parent.gameObject;
                 //toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
 
@@ -94,15 +96,19 @@ public class Block : MonoBehaviour
         transform.position = Camera.main.ViewportToWorldPoint(pos);
 
         //Debug.Log(toMove);
-        if (gameObject.tag == "Stationary")
+        if (gameObject.tag == "Stationary" && hasStopped == false)
         {
             //Debug.Log("SETTING TO STATIONARY");
-            Transform[] childTs = GetComponentsInChildren<Transform>();
+            Transform [] childTs = GetComponentsInChildren<Transform>();
 
             foreach (Transform trans in childTs)
             {
                 trans.gameObject.tag = "Stationary";
+                ScoringGrid.blocks.Add(trans.gameObject);
             }
+            gr.DetectFullRow();
+            hasStopped = true;
+            
             //Destroy(gameObject);
         }
 
@@ -134,8 +140,12 @@ public class Block : MonoBehaviour
         //test to see if it hits specific shapes will it stop moving - also did not work nor did the tag work
         if (coll.gameObject.tag == "Stationary")
         {
+            
             GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             gameObject.tag = "Stationary";
+            
+       
+ 
         }
     }
 
