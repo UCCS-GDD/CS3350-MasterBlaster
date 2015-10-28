@@ -44,7 +44,6 @@ public class BlockChild : MonoBehaviour {
             GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             //GetComponent<Rigidbody2D>().isKinematic = true;
             transform.parent.tag = "Stationary";
-            tag = "Stationary";
         }
 
 

@@ -103,8 +103,11 @@ public class Block : MonoBehaviour
 
             foreach (Transform trans in childTs)
             {
-                trans.gameObject.tag = "Stationary";
-                ScoringGrid.blocks.Add(trans.gameObject);
+                if (trans != gameObject.transform)
+                {
+                    trans.gameObject.tag = "Stationary";
+                    ScoringGrid.blocks.Add(trans.gameObject);
+                }
             }
             gr.DetectFullRow();
             hasStopped = true;
@@ -143,6 +146,7 @@ public class Block : MonoBehaviour
             
             GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
             gameObject.tag = "Stationary";
+            hasStopped = false;
             
        
  
