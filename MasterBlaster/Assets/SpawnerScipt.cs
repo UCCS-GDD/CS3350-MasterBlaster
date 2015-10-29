@@ -32,7 +32,7 @@ public class SpawnerScipt : MonoBehaviour {
         time = Random.Range(3,7);
        
         //the random location is from top grid - will be used as index in array
-        whereSpawnX = Random.Range(0,Grid.w);
+        whereSpawnX = Random.Range(2,Grid.w - 2);
         whereSpawnY = Random.Range(0, Grid.h);
        
         
@@ -74,7 +74,7 @@ public class SpawnerScipt : MonoBehaviour {
                     {
                         time = Random.Range(1, 3);
                     }
-                    whereSpawnX = Random.Range(0,Grid.w);
+                    whereSpawnX = Random.Range(2, Grid.w - 2);
                     whereSpawnY = Random.Range(0, Grid.h);
                     chooseRotation = Random.Range(0, howMany);
 
@@ -95,7 +95,7 @@ public class SpawnerScipt : MonoBehaviour {
                     {
                         time = Random.Range(1, 3);
                     }
-                    whereSpawnX = Random.Range(0,Grid.w);
+                    whereSpawnX = Random.Range(2, Grid.w - 2);
                     whereSpawnY = Random.Range(0, Grid.h);
                     chooseRotation = Random.Range(0, howMany);
                     break;
@@ -115,7 +115,7 @@ public class SpawnerScipt : MonoBehaviour {
                     {
                         time = Random.Range(1, 3);
                     }
-                    whereSpawnX = Random.Range(0,Grid.w);
+                    whereSpawnX = Random.Range(2, Grid.w - 2);
                     whereSpawnY = Random.Range(0, Grid.h);
                     chooseRotation = Random.Range(0, howMany);
                     break;

@@ -82,8 +82,9 @@ public class ScoringGrid : MonoBehaviour {
                 {
                         //overlap testing
                         //if (grid[x, y].GetComponent<Collider2D>().bounds.Intersects(blocks[i].GetComponent<Collider2D>().bounds))
-                        if (blocks[i].GetComponent<Collider2D>() == Physics2D.OverlapPoint(grid[x,y].GetComponent<Collider2D>().bounds.center))
+                        //if (blocks[i].GetComponent<Collider2D>() == Physics2D.OverlapPoint(grid[x,y].GetComponent<Collider2D>().bounds.center))
                          //if (grid[x,y].GetComponent<Collider2D>() == Physics2D.OverlapPoint(blocks[i].GetComponent<Collider2D>().bounds.center))
+                            if (grid[x,y].GetComponent<Collider2D>().bounds.Contains(blocks[i].GetComponent<Collider2D>().bounds.center))
                         {
                             //count += 1;
                            // Debug.Log(count);
