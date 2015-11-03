@@ -6,6 +6,7 @@ public class Turret : MonoBehaviour {
     Rigidbody2D turretRigid;  //store rigidbody of turret
     public GameObject bullet;  //store  gameobject of bullet
     float timeDown;            //used for how often turret can shoot
+   
 
 
 	// Use this for initialization
@@ -13,6 +14,7 @@ public class Turret : MonoBehaviour {
         //start off being able to shoot and assign the rigidbody to the variable
          timeDown = 0;
          turretRigid = GetComponent<Rigidbody2D>();
+         
          BlockChild.score = 0;
 	}
 	
@@ -23,6 +25,7 @@ public class Turret : MonoBehaviour {
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             turretRigid.AddForce(new Vector2(-0.4f, 0), ForceMode2D.Impulse);
+            
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {

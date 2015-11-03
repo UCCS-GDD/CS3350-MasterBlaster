@@ -59,6 +59,7 @@ public class BlockChild : MonoBehaviour {
             score += 5;
             Destroy(gameObject);
             Destroy(coll.gameObject);
+            
      
         }
 
