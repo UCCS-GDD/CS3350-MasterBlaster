@@ -10,7 +10,7 @@ public class ScoringGrid : MonoBehaviour {
     public static List<GameObject> blocks; 
     int count;
     int maxCount = 20;
-    public List<GameObject> blocksToDestroy;
+    public static List<GameObject> blocksToDestroy;
     public List<GameObject> halp;
 
     //make grid
@@ -40,6 +40,7 @@ public class ScoringGrid : MonoBehaviour {
     void Update()
     {
         halp = blocks;
+        Debug.Log(blocksToDestroy);
        //Debug.Log(blocksToDestroy.Count);
         //etectFullRow();
         //for (int j = blocksToDestroy.Count - 1; j >= 0; j--)
@@ -49,13 +50,29 @@ public class ScoringGrid : MonoBehaviour {
             
         //}
 
-        if (count >= maxCount)
+        if (blocksToDestroy.Count >= 2)
         {
             for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
             {
+                //Debug.Log("DESTROY: " + blocksToDestroy.Count.ToString() + " " + blocksToDestroy[i].GetComponent<Collider2D>().bounds.center.ToString());
                 Destroy(blocksToDestroy[i].gameObject);
-                count = 0;
+                blocksToDestroy.RemoveAt(i);
             }
+                
+
+                for (int j = blocks.Count; j >= 0; j--)
+                {
+                    if (blocks[j] == null)
+                    {
+                        blocks.RemoveAt(j);
+                    }
+                    else
+                    {
+                        blocks[j].gameObject.transform.position += new Vector3(0, 1);
+                    }
+                }
+                count = 0;
+            
         }
 
         //blocksToDestroy = blocks;
@@ -67,16 +84,18 @@ public class ScoringGrid : MonoBehaviour {
        
     }
 
-    public void DetectFullRow()
+    public static void DetectFullRow()
     {
 
         
-        for (int x = w - 1; x >= 0; x--)
+        for (int y = h - 1; y >= 0; y--)
         {
 
            //count = 0;
-            blocksToDestroy.Clear();
-            for (int y = h - 1; y >= 0; y--)
+
+            //this resets the count in the list but list still does not count correctly
+           blocksToDestroy.Clear();
+            for (int x = w - 1; x >= 0; x--)
             {
                 for (int i = 0; i < blocks.Count; i++)
                 {
@@ -84,13 +103,14 @@ public class ScoringGrid : MonoBehaviour {
                         //if (grid[x, y].GetComponent<Collider2D>().bounds.Intersects(blocks[i].GetComponent<Collider2D>().bounds))
                         //if (blocks[i].GetComponent<Collider2D>() == Physics2D.OverlapPoint(grid[x,y].GetComponent<Collider2D>().bounds.center))
                          //if (grid[x,y].GetComponent<Collider2D>() == Physics2D.OverlapPoint(blocks[i].GetComponent<Collider2D>().bounds.center))
-                            if (grid[x,y].GetComponent<Collider2D>().bounds.Contains(blocks[i].GetComponent<Collider2D>().bounds.center))
+                            if (blocks[i] != null && grid[x,y].GetComponent<Collider2D>().bounds.Contains(blocks[i].GetComponent<Collider2D>().bounds.center))
                         {
                             //count += 1;
                            // Debug.Log(count);
-                            blocksToDestroy.Add(blocks[i]);
-                            Debug.Log(count.ToString());
-                            Debug.Break();
+                            GameObject blockD = blocks[i];
+                            blocksToDestroy.Add(blockD);
+                            //.Log(count.ToString());
+                            //Debug.Break();
                             
 
                            //todo: change blocks to red

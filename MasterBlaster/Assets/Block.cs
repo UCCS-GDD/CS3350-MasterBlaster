@@ -7,7 +7,7 @@ public class Block : MonoBehaviour
     Vector3 pixelpos;
     GameObject transformObject;
     bool hasStopped = false;
-    public ScoringGrid gr;
+    ScoringGrid gr;
 
     // Use this for initialization
     void Start()
@@ -109,7 +109,8 @@ public class Block : MonoBehaviour
                     ScoringGrid.blocks.Add(trans.gameObject);
                 }
             }
-            gr.DetectFullRow();
+            ScoringGrid.DetectFullRow();
+            
             hasStopped = true;
             
             //Destroy(gameObject);
@@ -140,11 +141,13 @@ public class Block : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        //test to see if it hits specific shapes will it stop moving - also did not work nor did the tag work
+        
         if (coll.gameObject.tag == "Stationary")
         {
             
-            GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeAll;
+            GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX;
+            GetComponentInParent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+           // transform.DetachChildren();
             gameObject.tag = "Stationary";
             hasStopped = false;
             
