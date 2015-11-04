@@ -39,8 +39,8 @@ public class ScoringGrid : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        halp = blocks;
-        Debug.Log(blocksToDestroy);
+        halp = blocksToDestroy;
+        //Debug.Log(blocksToDestroy);
        //Debug.Log(blocksToDestroy.Count);
         //etectFullRow();
         //for (int j = blocksToDestroy.Count - 1; j >= 0; j--)
@@ -50,7 +50,7 @@ public class ScoringGrid : MonoBehaviour {
             
         //}
 
-        if (blocksToDestroy.Count >= 2)
+        if (blocksToDestroy.Count >= 4)
         {
             for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
             {
@@ -60,7 +60,7 @@ public class ScoringGrid : MonoBehaviour {
             }
                 
 
-                for (int j = blocks.Count; j >= 0; j--)
+                for (int j = blocks.Count - 1; j >= 0; j--)
                 {
                     if (blocks[j] == null)
                     {
@@ -68,7 +68,7 @@ public class ScoringGrid : MonoBehaviour {
                     }
                     else
                     {
-                        blocks[j].gameObject.transform.position += new Vector3(0, 1);
+                        blocks[j].gameObject.transform.position -= new Vector3(0, 1);
                     }
                 }
                 count = 0;
@@ -77,11 +77,6 @@ public class ScoringGrid : MonoBehaviour {
 
         //blocksToDestroy = blocks;
         
-    }
-
-    void OnTriggerEnter2D(Collider2D coll)
-    {
-       
     }
 
     public static void DetectFullRow()
