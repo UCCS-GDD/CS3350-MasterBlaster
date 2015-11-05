@@ -2,13 +2,18 @@
 using System.Collections;
 
 public class Button : MonoBehaviour {
-
+    float timer = 3;
+    float timerMax = 3;
+    
+        
 	// Use this for initialization
 	void Start () {
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        
 	
 	}
 
@@ -28,7 +33,8 @@ public class Button : MonoBehaviour {
         Application.LoadLevel(0);
     }
     public void toInstructions()
-    {
-        Application.LoadLevel(2);
+    {        
+            
+            Application.LoadLevel(2);
     }
 }

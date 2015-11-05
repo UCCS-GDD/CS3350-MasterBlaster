@@ -8,11 +8,12 @@ public class BlockChild : MonoBehaviour {
     //int count = 0;
     int maxCount = 10;
     //public static int count1 = 0;
+    AudioSource destructionSound;
    
 
 	// Use this for initialization
 	void Start () {
-
+        destructionSound = GetComponentInParent<AudioSource>();
         //ScoringGrid.blocks.Add(gameObject);
 	}
 	
@@ -56,9 +57,15 @@ public class BlockChild : MonoBehaviour {
         //if the block is hit by a bullet, destroy the bullet and block
         if (coll.gameObject.tag == "Bullet" && gameObject.tag != "Stationary")
         {
+            
+            destructionSound.Play();
             score += 5;
             Destroy(gameObject);
             Destroy(coll.gameObject);
+            if (destructionSound.time >= 2)
+            {
+                destructionSound.Stop();
+            }
             
      
         }
