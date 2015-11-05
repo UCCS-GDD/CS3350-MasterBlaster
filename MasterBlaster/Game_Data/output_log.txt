@@ -2,4 +2,44 @@ Mono path[0] = 'C:/Users/Francesca/Documents/GitHub/CS3350-MasterBlaster/MasterB
 Mono path[1] = 'C:/Users/Francesca/Documents/GitHub/CS3350-MasterBlaster/MasterBlaster/Game_Data/Mono'
 Mono config path = 'C:/Users/Francesca/Documents/GitHub/CS3350-MasterBlaster/MasterBlaster/Game_Data/Mono/etc'
 PlayerConnection initialized from C:/Users/Francesca/Documents/GitHub/CS3350-MasterBlaster/MasterBlaster/Game_Data (debug = 0)
-PlayerConnection initialized network socket : 0.0.0.0 55091
+PlayerConnection initialized network socket : 0.0.0.0 55186
+Multi-casting "[IP] 10.0.0.23 [Port] 55186 [Flags] 3 [Guid] 771454344 [EditorId] 472449747 [Version] 1048832 [Id] WindowsPlayer(Batman) [Debug] 1" to [225.0.0.222:54997]...
+Waiting for connection from host on [10.0.0.23:55186]...
+PlayerConnection accepted from [10.0.0.23] handle:0x204
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,defer=y,address=0.0.0.0:56344
+PlayerConnection already initialized - listening to [10.0.0.23:55186]
+Initialize engine version: 5.2.1f1 (44735ea161b3)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     128 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.047 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Francesca\Documents\GitHub\CS3350-MasterBlaster\MasterBlaster\Game_Data\Managed\System.dll (this message is harmless)
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2a54 -> priority: 1 
+  Thread -> id: 1974 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.133532 ms
+System memory in use before: 34.1 MB.
+System memory in use after: 34.1 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 296.
+Total: 0.221095 ms (FindLiveObjects: 0.019671 ms CreateObjectMapping: 0.018816 ms MarkObjects: 0.170633 ms  DeleteObjects: 0.011546 ms)
+
+Waiting for finish
