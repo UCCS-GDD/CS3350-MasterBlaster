@@ -50,7 +50,7 @@ public class ScoringGrid : MonoBehaviour {
             
         //}
 
-        if (blocksToDestroy.Count >= 4)
+        if (blocksToDestroy.Count >= 8)
         {
             for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
             {
