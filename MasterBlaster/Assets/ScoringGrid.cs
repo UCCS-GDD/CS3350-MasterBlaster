@@ -41,16 +41,16 @@ public class ScoringGrid : MonoBehaviour {
     {
         halp = blocksToDestroy;
         //Debug.Log(blocksToDestroy);
-       //Debug.Log(blocksToDestroy.Count);
+        //Debug.Log(blocksToDestroy.Count);
         //etectFullRow();
         //for (int j = blocksToDestroy.Count - 1; j >= 0; j--)
         //{
         //    //      Destroy(blocksToDestroy[j]);
         //    //Debug.Log(blocksToDestroy[j]);
-            
+
         //}
 
-        if (blocksToDestroy.Count >= 8)
+        if (blocksToDestroy.Count >= 4)
         {
             for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
             {
@@ -58,25 +58,46 @@ public class ScoringGrid : MonoBehaviour {
                 Destroy(blocksToDestroy[i].gameObject);
                 blocksToDestroy.RemoveAt(i);
             }
-                
 
-                for (int j = blocks.Count - 1; j >= 0; j--)
+
+            for (int j = blocks.Count - 1; j >= 0; j--)
+            {
+                if (blocks[j] == null)
                 {
-                    if (blocks[j] == null)
+                    blocks.RemoveAt(j);
+                }
+                else
+                {
+                    for (int y = h - 1; y >= 0; y--)
                     {
-                        blocks.RemoveAt(j);
-                    }
-                    else
-                    {
-                        blocks[j].gameObject.transform.position -= new Vector3(0, 1);
+
+
+
+                        for (int x = w - 1; x >= 0; x--)
+                        {
+                            
+                                //overlap testing
+                                //if (grid[x, y].GetComponent<Collider2D>().bounds.Intersects(blocks[i].GetComponent<Collider2D>().bounds))
+                                //if (blocks[i].GetComponent<Collider2D>() == Physics2D.OverlapPoint(grid[x,y].GetComponent<Collider2D>().bounds.center))
+                                //if (grid[x,y].GetComponent<Collider2D>() == Physics2D.OverlapPoint(blocks[i].GetComponent<Collider2D>().bounds.center))
+                                if ( grid[x, y].GetComponent<Collider2D>().bounds.Contains(blocks[j].GetComponent<Collider2D>().bounds.center) && y > 0)
+                                {
+                                    while (!grid[x, y-1].GetComponent<Collider2D>().bounds.Contains(blocks[j].GetComponent<Collider2D>().bounds.center))
+                                    {
+                                        blocks[j].transform.position = grid[x, y-1].transform.position;
+                                    }
+                                }
+                            
+                        }
+                        count = 0;
+
                     }
                 }
-                count = 0;
-            
-        }
 
-        //blocksToDestroy = blocks;
-        
+                //blocksToDestroy = blocks;
+
+            }
+        }
     }
 
     public static void DetectFullRow()
