@@ -50,7 +50,11 @@ public class ScoringGrid : MonoBehaviour {
             
         //}
 
+
         if (blocksToDestroy.Count >= 8)
+
+        if (blocksToDestroy.Count == 12)
+
         {
             for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
             {
@@ -64,11 +68,39 @@ public class ScoringGrid : MonoBehaviour {
                 {
                     if (blocks[j] == null)
                     {
+
                         blocks.RemoveAt(j);
                     }
                     else
                     {
                         blocks[j].gameObject.transform.position -= new Vector3(0, 1);
+
+
+
+
+                        for (int x = w - 1; x >= 0; x--)
+                        {
+
+                            for (int y = h - 1; x >= 0; x--)
+                            {
+
+                                //overlap testing
+                                //if (grid[x, y].GetComponent<Collider2D>().bounds.Intersects(blocks[i].GetComponent<Collider2D>().bounds))
+                                //if (blocks[i].GetComponent<Collider2D>() == Physics2D.OverlapPoint(grid[x,y].GetComponent<Collider2D>().bounds.center))
+                                //if (grid[x,y].GetComponent<Collider2D>() == Physics2D.OverlapPoint(blocks[i].GetComponent<Collider2D>().bounds.center))
+                                if (grid[x, y].GetComponent<Collider2D>().bounds.Contains(blocks[j].GetComponent<Collider2D>().bounds.center) && y > 0)
+                                {
+
+
+                                    blocks[j].transform.position = grid[x, y - 1].transform.position;
+                                    blocks[j].tag = "Untagged";
+
+                                }
+
+                            }
+                        }
+                        blocksToDestroy.Clear();
+
                     }
                 }
                 count = 0;

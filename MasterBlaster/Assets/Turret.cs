@@ -24,11 +24,11 @@ public class Turret : MonoBehaviour {
     void FixedUpdate()
     {
         //if the left or right arrow key is pressed add a force in the right direction
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             turretRigid.AddForce(new Vector2(-0.4f, 0), ForceMode2D.Impulse);            
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
             turretRigid.AddForce(new Vector2(0.4f, 0), ForceMode2D.Impulse);
         }
