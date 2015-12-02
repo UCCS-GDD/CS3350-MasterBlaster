@@ -8,6 +8,9 @@ public class Turret : MonoBehaviour {
     float timeDown;            //used for how often turret can shoot
     AudioSource movementsound;
     public AudioClip movementclip;
+
+    // Pickup Management
+    int bombCount = 0;
    
 
 
@@ -83,6 +86,15 @@ public class Turret : MonoBehaviour {
         
 
 	}
+    //if you collect a bomb add it to inventory
+    void OnTriggerEnter2D (Collider2D collider)
+    {
+        if (collider.gameObject.tag == "BombPickUp")
+        {
+            bombCount += 1;
+            Debug.Log(bombCount);
+        }
+    }
         void OnGUI()
         {
             GUIStyle style = new GUIStyle();
