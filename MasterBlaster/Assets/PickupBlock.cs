@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PickupBlock : MonoBehaviour {
-    public static int score;
+    //public static int score;
     public static GameObject gridPos;
     public GameObject bomb;
     //int count = 0;
@@ -39,7 +39,7 @@ public class PickupBlock : MonoBehaviour {
 
             Instantiate(bomb, transform.position, Quaternion.Euler(0, 0, 0));
             destructionSound.Play();
-            score += 5;
+            //score += 5;
             Destroy(gameObject);
             Destroy(coll.gameObject);
             if (destructionSound.time >= 2)

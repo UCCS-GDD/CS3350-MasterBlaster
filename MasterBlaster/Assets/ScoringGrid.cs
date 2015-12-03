@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ScoringGrid : MonoBehaviour {
 
     public static int w = 12;
-    public static int h = 6;
+    public static int h = 10;
     public GameObject gridCell;
     public static List<GameObject> blocks; 
     int count;
@@ -53,7 +53,7 @@ public class ScoringGrid : MonoBehaviour {
         //}
 
 
-        if (blocksToDestroy.Count >= 12)
+        if (blocksToDestroy.Count == 12)
 
         //if (blocksToDestroy.Count == 12)
 

@@ -27,14 +27,14 @@ public class Turret : MonoBehaviour {
     void FixedUpdate()
     {
         //if the left or right arrow key is pressed add a force in the right direction
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    turretRigid.AddForce(new Vector2(-0.4f, 0), ForceMode2D.Impulse);            
-        //}
-        //if (Input.GetKey(KeyCode.D))
-        //{
-        //    turretRigid.AddForce(new Vector2(0.4f, 0), ForceMode2D.Impulse);
-        //}
+        if (Input.GetKey(KeyCode.A))
+        {
+            turretRigid.AddForce(new Vector2(-0.4f, 0), ForceMode2D.Impulse);            
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            turretRigid.AddForce(new Vector2(0.4f, 0), ForceMode2D.Impulse);
+        }
         if(Mathf.Abs(turretRigid.velocity.x) > 4 && !movementsound.isPlaying)
         {
               movementsound.Play();
@@ -49,16 +49,16 @@ public class Turret : MonoBehaviour {
     // Update is called once per frame
         void Update () {
 
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                //turretRigid.AddForce(new Vector2(-0.4f, 0), ForceMode2D.Impulse);
-                transform.Translate(-1, 0, 0);
-            }
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                //turretRigid.AddForce(new Vector2(0.4f, 0), ForceMode2D.Impulse);
-                transform.Translate(1, 0, 0);
-            }
+            //if (Input.GetKeyDown(KeyCode.A))
+            //{
+            //    //turretRigid.AddForce(new Vector2(-0.4f, 0), ForceMode2D.Impulse);
+            //    transform.Translate(-1, 0, 0);
+            //}
+            //if (Input.GetKeyDown(KeyCode.D))
+            //{
+            //    //turretRigid.AddForce(new Vector2(0.4f, 0), ForceMode2D.Impulse);
+            //    transform.Translate(1, 0, 0);
+            //}
 
             //have our time constantly going down
             timeDown -= Time.deltaTime; 
