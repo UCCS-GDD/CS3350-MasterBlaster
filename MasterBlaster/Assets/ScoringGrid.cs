@@ -58,6 +58,7 @@ public class ScoringGrid : MonoBehaviour {
         //if (blocksToDestroy.Count == 12)
 
         {
+            BlockChild.score += 500;
             for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
             {
                 //Debug.Log("DESTROY: " + blocksToDestroy.Count.ToString() + " " + blocksToDestroy[i].GetComponent<Collider2D>().bounds.center.ToString());
