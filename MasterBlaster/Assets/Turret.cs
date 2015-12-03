@@ -89,10 +89,9 @@ public class Turret : MonoBehaviour {
     //if you collect a bomb add it to inventory
     void OnTriggerEnter2D (Collider2D collider)
     {
-        if (collider.gameObject.tag == "BombPickUp")
+        if (collider.gameObject.tag == "Pickup")
         {
-            bombCount += 1;
-            Debug.Log(bombCount);
+            CollectPickupEvent.FireCollectPickupEventHandler(collider.GetComponent<SpriteRenderer>().sprite);
         }
     }
         void OnGUI()
