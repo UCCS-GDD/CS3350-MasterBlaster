@@ -63,8 +63,10 @@ public class ScoringGrid : MonoBehaviour {
             {
                 //Debug.Log("DESTROY: " + blocksToDestroy.Count.ToString() + " " + blocksToDestroy[i].GetComponent<Collider2D>().bounds.center.ToString());
                 blocks.Remove(blocksToDestroy[i].gameObject);
-                Destroy(blocksToDestroy[i].gameObject);
+                GameObject temp = blocksToDestroy[i];
                 blocksToDestroy.RemoveAt(i);
+                Destroy(temp);
+                
                 
               
                 
@@ -73,17 +75,17 @@ public class ScoringGrid : MonoBehaviour {
 
            for (int j = blocks.Count - 1; j >= 0; j--)
             {
-                    if (blocks[j] == null)
-                    {
+                    //if (blocks[j] == null)
+                    //{
 
-                        blocks.RemoveAt(j);
-                    }
-                    else
-                    {
+                    //    blocks.RemoveAt(j);
+                    //}
+                    
+                    
                         blocks[j].gameObject.transform.position -= new Vector3(0, 1);
 
 
-                    }
+                    
                        
 
             }
@@ -110,7 +112,7 @@ public class ScoringGrid : MonoBehaviour {
            //count = 0;
 
             //this resets the count in the list 
-           blocksToDestroy.Clear();
+            blocksToDestroy = new List<GameObject>();
             for (int x = w - 1; x >= 0; x--)
             {
                 for (int i = 0; i < blocks.Count; i++)
