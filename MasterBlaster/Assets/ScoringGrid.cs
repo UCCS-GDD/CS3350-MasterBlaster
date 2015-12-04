@@ -13,6 +13,7 @@ public class ScoringGrid : MonoBehaviour {
     public static List<GameObject> blocksToDestroy;
     public List<GameObject> halp;
     public List<GameObject> allBlocks;
+    static int rowDeleted;
 
     //make grid
     public static GameObject[,] grid = new GameObject[w, h];
@@ -75,18 +76,30 @@ public class ScoringGrid : MonoBehaviour {
 
            for (int j = blocks.Count - 1; j >= 0; j--)
             {
-                    //if (blocks[j] == null)
-                    //{
+                //also happens on row 0 - can't figure out the best way to check if blocks are on row 0 
+                {
+                    blocks[j].gameObject.transform.position -= new Vector3(0, 1);
+                }
 
-                    //    blocks.RemoveAt(j);
-                    //}
-                    
-                    
-                        blocks[j].gameObject.transform.position -= new Vector3(0, 1);
+               //IMPORTANT: This worked to not have row 0 move, and it moved blocks but it moved all of them to the first row - also seems redundant to use more for loops
+                //for (int y = h - 1; y >= 1; y--)
+                //{
+                //    for (int x = w - 1; x >= 0; x--)
+                //    {
+                //        if (blocks[j] != null && grid[x, y].GetComponent<Collider2D>().bounds.Contains(blocks[j].GetComponent<Collider2D>().bounds.center))
+                //        {
+                //            if (rowDeleted != 0 && y > rowDeleted + 1)
+                //            {
 
-
-                    
-                       
+                //                blocks[j].transform.position = grid[x, y - 1].transform.position;
+                //            }
+                //            else if (rowDeleted == 0)
+                //            {
+                //                blocks[j].transform.position = grid[x, y - 1].transform.position;
+                //            }
+                //        }
+                //    }
+                //}
 
             }
                // blocksToDestroy.Clear();
@@ -111,8 +124,21 @@ public class ScoringGrid : MonoBehaviour {
 
            //count = 0;
 
+            rowDeleted = y; 
+            if (blocksToDestroy.Count == 12)
+            {
+                //capture the row that will be deleted
+               
+
+                //probably not right, but the destroy list was getting reset before anything could get deleted
+                break;
+               
+            }
+            else
+            {
             //this resets the count in the list 
             blocksToDestroy = new List<GameObject>();
+            }
             for (int x = w - 1; x >= 0; x--)
             {
                 for (int i = 0; i < blocks.Count; i++)
@@ -127,6 +153,7 @@ public class ScoringGrid : MonoBehaviour {
                            // Debug.Log(count);
                             GameObject blockD = blocks[i];
                             blocksToDestroy.Add(blockD);
+                              
                             //.Log(count.ToString());
                             //Debug.Break();
                             
