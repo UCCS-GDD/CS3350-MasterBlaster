@@ -23,5 +23,9 @@ public static class CollectPickupEvent{
             collectPickupEventHandlers(pickupImage);
         }
     }
+    public static void DeRegisterCollectPickupEventHandler(CollectPickupEventHandler pickupEvent)
+    {
+        collectPickupEventHandlers -= pickupEvent;
+    }
     
 }

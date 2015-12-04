@@ -49,5 +49,6 @@ public class PickupBlock : MonoBehaviour {
 
 
         }
+        //if (coll.gameObject.tag == )
     }
 }

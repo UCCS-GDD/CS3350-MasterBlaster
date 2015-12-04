@@ -16,7 +16,7 @@ public class InventoryManager : MonoBehaviour {
         {
             if (uiSlots[i].tag == "InventorySlot")
             {
-                pickupImages.Add(uiSlots[i].GetComponentInChildren<Image>());
+                pickupImages.Add(uiSlots[i].GetComponentsInChildren<Image>()[1]);
             }
         }
 
@@ -30,15 +30,32 @@ public class InventoryManager : MonoBehaviour {
 	
 
 	}
-    // this isn't running for some reason
+    // activate add the sprite to the UI icon if the pick up event is fired
     public void HandlePickupEvent(Sprite pickupIcon)
     {
-        pickupImages[inventoryCount].sprite = pickupIcon;
-        pickupImages[inventoryCount].gameObject.SetActive(true);
-        inventoryCount++;
+        if (inventoryCount <= 4)
+        {
+            pickupImages[inventoryCount].enabled = true;
+            pickupImages[inventoryCount].sprite = pickupIcon;
+            inventoryCount++;
+        }
     }
     void OnEnable()
     {
         CollectPickupEvent.RegisterCollectPickupEventHandler(HandlePickupEvent);
+        
     }
+    public void ShootPickup(Image pickupImage)
+    {
+
+        ShootPickupEvent.FireShootPickpEventHandler(pickupImage);
+        pickupImage.enabled = false;
+        inventoryCount--;
+        
+    }
+    public void OnDisable()
+    {
+        CollectPickupEvent.DeRegisterCollectPickupEventHandler(HandlePickupEvent);
+    }
+    
 }

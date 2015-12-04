@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour {
 
@@ -9,9 +10,9 @@ public class Turret : MonoBehaviour {
     AudioSource movementsound;
     public AudioClip movementclip;
 
-    // Pickup Management
-    int bombCount = 0;
-   
+    //Pickup fields
+    public GameObject Bomb;
+    Vector2 ShootingForce;
 
 
 	// Use this for initialization
@@ -21,6 +22,7 @@ public class Turret : MonoBehaviour {
          turretRigid = GetComponent<Rigidbody2D>();
          movementsound = GetComponent<AudioSource>();
          BlockChild.score = 0;
+        ShootingForce = new Vector2(0, 10);
 	}
 	
 
@@ -87,7 +89,7 @@ public class Turret : MonoBehaviour {
          {
             //insantiate a bullet and set the delay time between shooting
             Instantiate(bullet, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
-            timeDown = 0.5f;
+            timeDown = 0.8f;
          }
 
         //if escape is pressed exit the  game
@@ -98,6 +100,20 @@ public class Turret : MonoBehaviour {
         
 
 	}
+    public void HandleShootPickupEvent(Image pickupImage)
+    {
+        Debug.Log("puckup Projectile name " + pickupImage.sprite.name);
+        if ( pickupImage.enabled && pickupImage.sprite.name == "Bomb")
+        {
+            GameObject bomb = Instantiate(Bomb, new Vector3(turretRigid.transform.position.x, turretRigid.transform.position.y +1), Quaternion.Euler(0,0,0)) as GameObject;
+            Debug.Log(bomb.transform.position.ToString());
+            bomb.GetComponent<Rigidbody2D>().AddForce(ShootingForce, ForceMode2D.Impulse);
+        }
+    }
+    void OnEnable()
+    {
+        ShootPickupEvent.HandleShootPickupEventHandler(HandleShootPickupEvent);
+    }
     //if you collect a bomb add it to inventory
     void OnTriggerEnter2D (Collider2D collider)
     {
@@ -112,5 +128,8 @@ public class Turret : MonoBehaviour {
             style.fontSize = 40;
             GUI.Label(new Rect(0, 0, 10, 10), BlockChild.score.ToString(), style);
         }
+    void OnDisable()
+    {
+        ShootPickupEvent.DeregisterShootPickupEventHandler(HandleShootPickupEvent);    }
   
 }
