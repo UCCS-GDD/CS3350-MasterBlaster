@@ -14,6 +14,7 @@ public class ScoringGrid : MonoBehaviour {
     public List<GameObject> halp;
     public List<GameObject> allBlocks;
     static int rowDeleted;
+    public static ScoringGrid sg;
 
     //make grid
     public static GameObject[,] grid = new GameObject[w, h];
@@ -25,6 +26,7 @@ public class ScoringGrid : MonoBehaviour {
        blocksToDestroy = new List<GameObject>();
         blocks = new List<GameObject>();
        count = 0;
+        sg = this;
 
         //go through list and column and set the positions equal to a multiple of 64 (1 unit in unity is set to 64 pixels)
         for (int x = 0; x < w; x++)
@@ -54,66 +56,55 @@ public class ScoringGrid : MonoBehaviour {
         //}
 
 
-        if (blocksToDestroy.Count == 12)
+        
 
         //if (blocksToDestroy.Count == 12)
 
-        {
-            BlockChild.score += 500;
-            for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
-            {
-                //Debug.Log("DESTROY: " + blocksToDestroy.Count.ToString() + " " + blocksToDestroy[i].GetComponent<Collider2D>().bounds.center.ToString());
-                blocks.Remove(blocksToDestroy[i].gameObject);
-                GameObject temp = blocksToDestroy[i];
-                blocksToDestroy.RemoveAt(i);
-                Destroy(temp);
-                
-                
-              
-                
-            }
-                
-
-           for (int j = blocks.Count - 1; j >= 0; j--)
-            {
-                //also happens on row 0 - can't figure out the best way to check if blocks are on row 0 
-                {
-                    blocks[j].gameObject.transform.position -= new Vector3(0, 1);
-                }
-
-               //IMPORTANT: This worked to not have row 0 move, and it moved blocks but it moved all of them to the first row - also seems redundant to use more for loops
-                //for (int y = h - 1; y >= 1; y--)
-                //{
-                //    for (int x = w - 1; x >= 0; x--)
-                //    {
-                //        if (blocks[j] != null && grid[x, y].GetComponent<Collider2D>().bounds.Contains(blocks[j].GetComponent<Collider2D>().bounds.center))
-                //        {
-                //            if (rowDeleted != 0 && y > rowDeleted + 1)
-                //            {
-
-                //                blocks[j].transform.position = grid[x, y - 1].transform.position;
-                //            }
-                //            else if (rowDeleted == 0)
-                //            {
-                //                blocks[j].transform.position = grid[x, y - 1].transform.position;
-                //            }
-                //        }
-                //    }
-                //}
-
-            }
-               // blocksToDestroy.Clear();
-                DetectFullRow();
-                //blocks.Clear();
-                //count = 0;
-        }
-                
-            
-        }
-
-        //blocksToDestroy = blocks;
         
-    
+            
+            
+      }
+
+    public static void DeleteFullRow()
+    {
+        BlockChild.score += 500;
+        for (int i = blocksToDestroy.Count - 1; i >= 0; i--)
+        {
+            //Debug.Log("DESTROY: " + blocksToDestroy.Count.ToString() + " " + blocksToDestroy[i].GetComponent<Collider2D>().bounds.center.ToString());
+            blocks.Remove(blocksToDestroy[i].gameObject);
+            GameObject temp = blocksToDestroy[i];
+            blocksToDestroy.RemoveAt(i);
+            Destroy(temp);
+
+
+
+
+        }
+
+          // For each row from bottom to top
+            for (int y = rowDeleted + 1; y < h; ++y)
+             {
+             // For each column left to right
+                 for (int x = 0; x < w; ++x)
+                   {
+                     // For each block
+                      for (int j = 0; j < blocks.Count; ++j)
+                         {
+                        // If the block IS stationary and in this grid cell, move it down one row
+                            if (blocks[j] != null && blocks[j].tag == "Stationary"
+                            && grid[x, y].GetComponent<Collider2D>().bounds.Contains(blocks[j].GetComponent<Collider2D>().bounds.center))
+                                  {
+                                       blocks[j].transform.position = grid[x, y - 1].transform.position;
+                                  }
+                         }
+                   }
+            }
+
+            ScoringGrid.DetectFullRow();
+   
+
+        }
+  
 
     public static void DetectFullRow()
     {
@@ -131,7 +122,8 @@ public class ScoringGrid : MonoBehaviour {
                
 
                 //probably not right, but the destroy list was getting reset before anything could get deleted
-                break;
+                DeleteFullRow();
+                //break;
                
             }
             else
@@ -160,6 +152,8 @@ public class ScoringGrid : MonoBehaviour {
 
                            //todo: change blocks to red
                             blocks[i].GetComponent<SpriteRenderer>().color = Color.red;
+
+                               
                             
 
 
@@ -177,5 +171,6 @@ public class ScoringGrid : MonoBehaviour {
         
     }
 
-
-}
+   
+                
+    }
