@@ -53,7 +53,7 @@ public class Block : MonoBehaviour
 
             //                                            Debug.Log("pixelpos " + pixelpos.ToString());
 
-            if (Input.GetKeyDown(KeyCode.A) && toMove.tag != "Stationary")
+            if (Input.GetKeyDown(KeyCode.Q) && toMove.tag != "Stationary")
             {
                 //pixelpos.x -= 1;
                 //Vector3 pixelToMove = Camera.main.ScreenToWorldPoint(new Vector3(pixelpos.x - 1, pixelpos.y, pixelpos.z));
@@ -64,7 +64,7 @@ public class Block : MonoBehaviour
                 toMove.transform.position -= new Vector3(1, 0);
 
             }
-            else if (Input.GetKeyDown(KeyCode.D) && toMove.tag != "Stationary")
+            else if (Input.GetKeyDown(KeyCode.E) && toMove.tag != "Stationary")
             {
                 toMove.transform.position += new Vector3(1, 0);
             }
