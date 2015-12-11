@@ -106,7 +106,10 @@ public class Block : MonoBehaviour
                 if (trans != gameObject.transform)
                 {
                     trans.gameObject.tag = "Stationary";
-                    ScoringGrid.blocks.Add(trans.gameObject);
+                    if (!ScoringGrid.blocks.Contains(trans.gameObject))
+                    {
+                        ScoringGrid.blocks.Add(trans.gameObject);
+                    }
                 }
             }
             ScoringGrid.DetectFullRow();
