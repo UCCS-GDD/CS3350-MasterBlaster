@@ -44,7 +44,11 @@ public class ScoringGrid : MonoBehaviour {
     void Update()
     {
         halp = blocksToDestroy;
-        allBlocks = blocks; 
+        allBlocks = blocks;
+        if (blocksToDestroy.Count == 12)
+        {
+            DeleteFullRow();
+        }
         //Debug.Log(blocksToDestroy);
        //Debug.Log(blocksToDestroy.Count);
         //etectFullRow();
