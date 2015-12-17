@@ -37,4 +37,9 @@ public class Button : MonoBehaviour {
             
             Application.LoadLevel(2);
     }
+    public void Restart()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+        Time.timeScale = 1;
+    }
 }

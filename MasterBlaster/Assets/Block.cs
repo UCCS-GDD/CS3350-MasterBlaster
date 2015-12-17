@@ -32,17 +32,19 @@ public class Block : MonoBehaviour
             Vector2 v = Camera.main.ScreenToWorldPoint(mousePosition);
 
             //get the colliders the mouse is over
-            Collider2D col = Physics2D.OverlapPoint(v);
-
+            Collider2D[] col = Physics2D.OverlapPointAll(v);
+            
+            foreach(Collider2D c in col)
+            { 
             //if the mouse is over something
-            if (col != null)
-            {
-                //set the shape that can be moved to the colliders the mouse is pressing
+                if (c != null)
+                {
+                    //set the shape that can be moved to the colliders the mouse is pressing
 
-                //Debug.Log("Collided with: " + col.gameObject.name);
-                toMove = col.gameObject.transform.parent.gameObject;
-                //toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
-
+                    //Debug.Log("Collided with: " + col.gameObject.name);
+                    toMove = c.gameObject.transform.parent.gameObject;
+                    //toMove.GetComponentInParent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                }
             }
         }
 
