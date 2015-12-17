@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Block : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Block : MonoBehaviour
     GameObject transformObject;
     bool hasStopped = false;
     ScoringGrid gr;
+
 
     // Use this for initialization
     void Start()
@@ -159,5 +161,21 @@ public class Block : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D coll )
+    {
+        if (coll.tag == "Top" && tag == "Stationary")
+        {
+            GameObject ohno = GameObject.FindGameObjectWithTag("GameOver");
+            ohno.GetComponent<Text>().text = "Game Over\n your score is: " + BlockChild.score;
+            Time.timeScale = 0;
+            Debug.Log("top");
+           
+            
+        }
+        
 
+       
+    }
+
+    
 }

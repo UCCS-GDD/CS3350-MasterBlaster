@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ScoringGrid : MonoBehaviour {
 
     public static int w = 12;
-    public static int h = 10;
+    public static int h = 11;
     public GameObject gridCell;
     public static List<GameObject> blocks; 
     int count;
