@@ -76,9 +76,6 @@ public class ScoringGrid : MonoBehaviour {
             blocksToDestroy.RemoveAt(i);
             Destroy(temp);
 
-
-
-
         }
 
           // For each row from bottom to top
